@@ -1,9 +1,14 @@
-# tempus.build status page (Upptime). Edit this file to change what is monitored; the
-# workflows in .github/workflows/ are hand-maintained and SHA-pinned (see README).
+# tempus.build status page (Upptime). Edit this file to change what is monitored.
 # Docs: https://upptime.js.org/docs/configuration
 
 owner: tempusbuild
 repo: status
+user-agent: "Upptime (tempus.build)"
+
+# Upptime overwrites the repo description/topics/homepage by default — keep our curated ones.
+skipDescriptionUpdate: true
+skipTopicsUpdate: true
+skipHomepageUpdate: true
 
 # Checks run on GitHub-hosted runners, not our own: a status page must stay up even when
 # the infrastructure it monitors is down.
@@ -11,8 +16,7 @@ repo: status
 assignees:
   - ozeranskii
 
-# Override Upptime's emoji defaults so the bot's auto-commits follow the repo's
-# Conventional Commits style; keep [skip ci] (avoids CI loops) and [upptime] markers.
+# Bot auto-commits in Conventional Commits style; [skip ci] avoids CI loops.
 commitMessages:
   readmeContent: "chore(status): update README summary [skip ci] [upptime]"
   summaryJson: "chore(status): update status summary [skip ci] [upptime]"
@@ -26,6 +30,7 @@ sites:
     expectedStatusCodes:
       - 200
     maxResponseTime: 2000
+    icon: https://tempus.build/favicon.svg
 
   # Commented out until public health endpoints exist — Upptime is HTTP-only, so without a
   # real endpoint these would report DOWN. Host TBD (no api.tempus.build yet).
@@ -37,7 +42,9 @@ sites:
 status-website:
   cname: status.tempus.build
   logoUrl: https://tempus.build/favicon.svg
+  faviconSvg: https://tempus.build/favicon.svg
   name: tempus.build status
+  theme: dark
   introTitle: "**tempus.build** — live status of our managed GitHub Actions runners."
   introMessage: >-
     Uptime and incident history, powered entirely by GitHub Actions, Issues, and
@@ -50,3 +57,47 @@ status-website:
       href: https://tempus.build
     - title: GitHub
       href: https://github.com/tempusbuild
+  # tempus.build palette (matches the landing: zinc-950/100, emerald-400) over the dark theme.
+  css: |
+    :root {
+      --body-background-color: #09090b;
+      --body-text-color: #f4f4f5;
+      --card-background-color: #18181b;
+      --card-border-color: #27272a;
+      --nav-background-color: #09090b;
+      --nav-border-bottom-color: #27272a;
+      --nav-current-border-bottom-color: #34d399;
+      --code-background-color: #18181b;
+      --code-color: #f4f4f5;
+      --up-border-left-color: #34d399;
+      --tag-up-background-color: #34d399;
+      --down-border-left-color: #f43f5e;
+      --down-background-color: #2a0b12;
+      --tag-down-background-color: #f43f5e;
+      --degraded-border-left-color: #fbbf24;
+      --tag-degraded-background-color: #fbbf24;
+      --change-background-color: #fbbf24;
+      --tag-color: #09090b;
+      --submit-button-background-color: #10b981;
+      --submit-button-border-color: #10b981;
+      --submit-button-color: #052e16;
+      --error-button-background-color: #10b981;
+      --error-button-border-color: #10b981;
+      --error-button-color: #052e16;
+    }
+    body {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+    :focus-visible {
+      outline: 2px solid #34d399;
+      outline-offset: 2px;
+    }
+  customHeadHtml: |
+    <meta name="theme-color" content="#09090b">
+    <meta name="description" content="Live uptime and incident history for tempus.build.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="tempus.build status">
+    <meta property="og:description" content="Live uptime and incident history for tempus.build.">
+    <meta property="og:url" content="https://status.tempus.build/">
+    <meta property="og:image" content="https://tempus.build/og.png">
+    <meta name="twitter:card" content="summary_large_image">
