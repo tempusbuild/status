@@ -4,6 +4,7 @@
 name: Static Site CI
 on:
   push:
+    branches: [main]
     paths:
       - "assets/**"
   schedule:
@@ -12,7 +13,7 @@ on:
     types: [static_site]
   workflow_dispatch:
 concurrency:
-  group: ${{ github.repository }}-${{ github.head_ref || github.ref_name }}-upptime
+  group: ${{ github.repository }}-${{ github.ref_name }}-upptime
   cancel-in-progress: false
 # Writes use the App token, not GITHUB_TOKEN — keep the job token read-only.
 permissions:
@@ -20,19 +21,22 @@ permissions:
 jobs:
   release:
     name: Build and deploy site
+    # Run only from the default branch; skip Upptime's own [skip ci] commits.
+    if: github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, '[skip ci]')
     runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    timeout-minutes: 15
     steps:
       - name: Mint a token for the Upptime GitHub App
         id: app-token
         uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
         with:
-          app-id: ${{ vars.APP_ID }}
+          client-id: ${{ vars.APP_CLIENT_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          permission-contents: write
       - name: Checkout
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
         with:
-          ref: ${{ github.head_ref || github.ref_name }}
+          ref: ${{ github.ref_name }}
           token: ${{ steps.app-token.outputs.token }}
       - name: Generate site
         uses: upptime/uptime-monitor@940c360e6ee3b3f43b234e56a79e15c76a0c6c2e # v1.42.6
