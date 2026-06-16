@@ -1,0 +1,39 @@
+# Hand-maintained Upptime workflow — SHA-pinned, auto-regeneration disabled. Don't run
+# `upptime update-template`: it regenerates this file and drops the pins. See README.
+
+name: Response Time CI
+on:
+  schedule:
+    - cron: "0 23 * * *"
+  repository_dispatch:
+    types: [response_time]
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.repository }}-${{ github.head_ref || github.ref_name }}-upptime
+  cancel-in-progress: false
+# Writes use the App token, not GITHUB_TOKEN — keep the job token read-only.
+permissions:
+  contents: read
+jobs:
+  release:
+    name: Check status
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mint a token for the Upptime GitHub App
+        id: app-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+      - name: Checkout
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+          token: ${{ steps.app-token.outputs.token }}
+      - name: Update response time
+        uses: upptime/uptime-monitor@1ee67da0e46844c43a496afde156bad5baec401e # v1.42.5
+        with:
+          command: "response-time"
+        env:
+          GH_PAT: ${{ steps.app-token.outputs.token }}
+          SECRETS_CONTEXT: ${{ toJson(secrets) }}

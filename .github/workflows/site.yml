@@ -1,0 +1,50 @@
+# Hand-maintained Upptime workflow — SHA-pinned, auto-regeneration disabled. Don't run
+# `upptime update-template`: it regenerates this file and drops the pins. See README.
+
+name: Static Site CI
+on:
+  push:
+    paths:
+      - "assets/**"
+  schedule:
+    - cron: "0 1 * * *"
+  repository_dispatch:
+    types: [static_site]
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.repository }}-${{ github.head_ref || github.ref_name }}-upptime
+  cancel-in-progress: false
+# Writes use the App token, not GITHUB_TOKEN — keep the job token read-only.
+permissions:
+  contents: read
+jobs:
+  release:
+    name: Build and deploy site
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    steps:
+      - name: Mint a token for the Upptime GitHub App
+        id: app-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+      - name: Checkout
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+          token: ${{ steps.app-token.outputs.token }}
+      - name: Generate site
+        uses: upptime/uptime-monitor@1ee67da0e46844c43a496afde156bad5baec401e # v1.42.5
+        with:
+          command: "site"
+        env:
+          GH_PAT: ${{ steps.app-token.outputs.token }}
+      - uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4
+        name: GitHub Pages Deploy
+        with:
+          github_token: ${{ steps.app-token.outputs.token }}
+          publish_dir: "site/status-page/__sapper__/export/"
+          force_orphan: "false"
+          user_name: "Upptime Bot"
+          user_email: "73812536+upptime-bot@users.noreply.github.com"

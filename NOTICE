@@ -1,0 +1,14 @@
+tempus.build status page
+Copyright (c) 2026 Sergei Ozeranskii / tempus.build
+
+This repository is based on the Upptime template
+(https://github.com/upptime/upptime), MIT License, Copyright (c) 2020 Anand
+Chowdhary. The GitHub Actions workflows under .github/workflows/ are derived from
+that template (and since modified — see the README). Configuration, documentation,
+and changes in this repository are Copyright (c) 2026 Sergei Ozeranskii /
+tempus.build, released under the same MIT License (see LICENSE).
+
+"tempus.build" and the tempus.build logo are trademarks of the tempus.build
+project. The MIT License covers the source in this repository; it does not grant
+permission to use these marks. Forks and derivatives must use their own name and
+branding.

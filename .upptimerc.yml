@@ -1,0 +1,44 @@
+# tempus.build status page (Upptime). Edit this file to change what is monitored; the
+# workflows in .github/workflows/ are hand-maintained and SHA-pinned (see README).
+# Docs: https://upptime.js.org/docs/configuration
+
+owner: tempusbuild
+repo: status
+
+# Checks run on GitHub-hosted runners, not our own: a status page must stay up even when
+# the infrastructure it monitors is down.
+
+assignees:
+  - ozeranskii
+
+sites:
+  - name: Landing
+    url: https://tempus.build/
+    # Apex returns the locale-detector page as 200 before redirecting to /en|ru/.
+    expectedStatusCodes:
+      - 200
+    maxResponseTime: 2000
+
+  # Commented out until public health endpoints exist — Upptime is HTTP-only, so without a
+  # real endpoint these would report DOWN. Host TBD (no api.tempus.build yet).
+  # - name: Runner infrastructure   # 200 when the ARC scale-set schedules jobs
+  #   url: https://<health-host>/runners
+  # - name: Cache                   # 200 when the build cache is read/write healthy
+  #   url: https://<health-host>/cache
+
+status-website:
+  cname: status.tempus.build
+  logoUrl: https://tempus.build/favicon.svg
+  name: tempus.build status
+  introTitle: "**tempus.build** — live status of our managed GitHub Actions runners."
+  introMessage: >-
+    Uptime and incident history, powered entirely by GitHub Actions, Issues, and
+    Pages — no server. For deep metrics we use our own observability stack; this page
+    is the public summary.
+  navbar:
+    - title: Status
+      href: /
+    - title: tempus.build
+      href: https://tempus.build
+    - title: GitHub
+      href: https://github.com/tempusbuild
