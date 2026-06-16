@@ -2,7 +2,7 @@
   {
     "name": "Landing",
     "url": "https://tempus.build/",
-    "icon": "https://icons.duckduckgo.com/ip3/tempus.build.ico",
+    "icon": "https://tempus.build/favicon.svg",
     "slug": "landing",
     "status": "down",
     "uptime": "100.00%",
@@ -10,11 +10,11 @@
     "uptimeWeek": "100.00%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
-    "time": 100,
-    "timeDay": 100,
-    "timeWeek": 100,
-    "timeMonth": 100,
-    "timeYear": 100,
+    "time": 97,
+    "timeDay": 97,
+    "timeWeek": 97,
+    "timeMonth": 97,
+    "timeYear": 97,
     "dailyMinutesDown": {}
   }
 ]
