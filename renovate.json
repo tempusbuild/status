@@ -1,15 +1,23 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended",
-    "helpers:pinGitHubActionDigests"
-  ],
+  "extends": ["config:recommended", "helpers:pinGitHubActionDigests"],
+  "timezone": "Etc/UTC",
+  "pre-commit": {
+    "enabled": true
+  },
+  "schedule": ["before 6am on monday"],
   "labels": ["dependencies"],
+  "prHourlyLimit": 2,
+  "prConcurrentLimit": 5,
+  "dependencyDashboard": true,
+  "configMigration": true,
+  "minimumReleaseAge": "3 days",
   "packageRules": [
     {
-      "description": "Group the SHA-pin bumps for the Upptime-derived workflow actions.",
+      "description": "GHA actions (incl. the Upptime-derived workflows): pin by SHA, tag comment auto-updated (pinGitHubActionDigests), grouped into one PR.",
       "matchManagers": ["github-actions"],
-      "groupName": "github-actions"
+      "groupName": "github-actions",
+      "pinDigests": true
     }
   ]
 }

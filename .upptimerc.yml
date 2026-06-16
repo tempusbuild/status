@@ -11,6 +11,14 @@ repo: status
 assignees:
   - ozeranskii
 
+# Override Upptime's emoji defaults so the bot's auto-commits follow the repo's
+# Conventional Commits style; keep [skip ci] (avoids CI loops) and [upptime] markers.
+commitMessages:
+  readmeContent: "chore(status): update README summary [skip ci] [upptime]"
+  summaryJson: "chore(status): update status summary [skip ci] [upptime]"
+  statusChange: "chore(status): $SITE_NAME is $STATUS ($RESPONSE_CODE in $RESPONSE_TIME ms) [skip ci] [upptime]"
+  graphsUpdate: "chore(status): update graphs [skip ci] [upptime]"
+
 sites:
   - name: Landing
     url: https://tempus.build/
