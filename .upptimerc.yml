@@ -16,11 +16,12 @@ skipHomepageUpdate: true
 assignees:
   - ozeranskii
 
-# Bot auto-commits in Conventional Commits style; [skip ci] avoids CI loops.
+# statusChange must stay emoji-first: Upptime reads the live status from the leading
+# 🟩/🟨/🟥 of the latest history commit (a "chore:" prefix made it read every site as down).
 commitMessages:
   readmeContent: "chore(status): update README summary [skip ci] [upptime]"
   summaryJson: "chore(status): update status summary [skip ci] [upptime]"
-  statusChange: "chore(status): $SITE_NAME is $STATUS ($RESPONSE_CODE in $RESPONSE_TIME ms) [skip ci] [upptime]"
+  statusChange: "$EMOJI $SITE_NAME is $STATUS ($RESPONSE_CODE in $RESPONSE_TIME ms) [skip ci] [upptime]"
   graphsUpdate: "chore(status): update graphs [skip ci] [upptime]"
 
 sites:
