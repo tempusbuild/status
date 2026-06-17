@@ -40,3 +40,13 @@ jobs:
           command: "readme"
         env:
           GH_PAT: ${{ steps.app-token.outputs.token }}
+      - name: Generate badges and graphs
+        run: |
+          node scripts/upptime-graphs.mjs
+          git config user.name "Upptime Bot"
+          git config user.email "73812536+upptime-bot@users.noreply.github.com"
+          git add api graphs README.md
+          git diff --cached --quiet || git commit -m "chore(status): update api badges and graphs [skip ci] [upptime]"
+          git push
+        env:
+          GH_PAT: ${{ steps.app-token.outputs.token }}
