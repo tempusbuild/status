@@ -1,0 +1,22 @@
+# PR gate (not Upptime-generated): runs the repo's pre-commit suite, incl. actionlint on
+# the hand-maintained workflows. Fork-safe — no secrets, read-only token.
+name: CI
+on:
+  pull_request:
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  pre-commit:
+    name: pre-commit
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
+        with:
+          persist-credentials: false
+      - name: Run pre-commit
+        run: pipx run pre-commit run --all-files --show-diff-on-failure
