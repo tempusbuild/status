@@ -1,6 +1,5 @@
-# Upptime commits machine-generated data (history/, graphs/, api/) and rewrites the
-# workflows from .upptimerc.yml — keep linters off those so they don't fight the bot.
-exclude: "^(history|graphs|api)/|^\\.github/workflows/"
+# Skip Upptime's machine-generated data (history/, graphs/, api/) — written by the bot.
+exclude: "^(history|graphs|api)/"
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -11,6 +10,11 @@ repos:
       - id: check-yaml
       - id: check-json
       - id: check-merge-conflict
+
+  - repo: https://github.com/rhysd/actionlint
+    rev: v1.7.12
+    hooks:
+      - id: actionlint
 
   - repo: https://github.com/gitleaks/gitleaks
     rev: v8.30.1
