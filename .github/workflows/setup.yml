@@ -37,13 +37,13 @@ jobs:
           ref: ${{ github.ref_name }}
           token: ${{ steps.app-token.outputs.token }}
       - name: Update response time
-        uses: upptime/uptime-monitor@940c360e6ee3b3f43b234e56a79e15c76a0c6c2e # v1.42.6
+        uses: upptime/uptime-monitor@176831d39d1e5eb6f52a76894ccf4fad51463d33 # v1.43.0
         with:
           command: "response-time"
         env:
           GH_PAT: ${{ steps.app-token.outputs.token }}
       - name: Update summary in README
-        uses: upptime/uptime-monitor@940c360e6ee3b3f43b234e56a79e15c76a0c6c2e # v1.42.6
+        uses: upptime/uptime-monitor@176831d39d1e5eb6f52a76894ccf4fad51463d33 # v1.43.0
         with:
           command: "readme"
         env:
@@ -59,7 +59,7 @@ jobs:
         env:
           GH_PAT: ${{ steps.app-token.outputs.token }}
       - name: Generate site
-        uses: upptime/uptime-monitor@940c360e6ee3b3f43b234e56a79e15c76a0c6c2e # v1.42.6
+        uses: upptime/uptime-monitor@176831d39d1e5eb6f52a76894ccf4fad51463d33 # v1.43.0
         with:
           command: "site"
         env:
