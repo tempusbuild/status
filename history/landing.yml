@@ -1,7 +1,7 @@
 url: https://tempus.build/
-status: up
-code: 200
-responseTime: 175
-lastUpdated: 2026-07-18T00:01:24.474Z
+status: degraded
+code: 503
+responseTime: 15398
+lastUpdated: 2026-07-18T19:36:34.917Z
 startTime: 2026-06-16T10:12:46.053Z
 generator: Upptime <https://github.com/upptime/upptime>
