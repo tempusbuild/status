@@ -4,17 +4,17 @@
     "url": "https://tempus.build/",
     "icon": "https://tempus.build/favicon.svg",
     "slug": "landing",
-    "status": "up",
+    "status": "degraded",
     "uptime": "100.00%",
     "uptimeDay": "100.00%",
     "uptimeWeek": "100.00%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
-    "time": 118,
-    "timeDay": 124,
-    "timeWeek": 125,
-    "timeMonth": 117,
-    "timeYear": 118,
+    "time": 327,
+    "timeDay": 5215,
+    "timeWeek": 1143,
+    "timeMonth": 367,
+    "timeYear": 327,
     "dailyMinutesDown": {}
   }
 ]
