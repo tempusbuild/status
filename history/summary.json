@@ -6,15 +6,15 @@
     "slug": "landing",
     "status": "up",
     "uptime": "99.98%",
-    "uptimeDay": "99.43%",
+    "uptimeDay": "100.00%",
     "uptimeWeek": "99.92%",
     "uptimeMonth": "99.98%",
     "uptimeYear": "99.98%",
-    "time": 382,
-    "timeDay": 3550,
-    "timeWeek": 1276,
-    "timeMonth": 438,
-    "timeYear": 382,
+    "time": 375,
+    "timeDay": 100,
+    "timeWeek": 1274,
+    "timeMonth": 433,
+    "timeYear": 375,
     "dailyMinutesDown": {
       "2026-07-18": 8
     }
