@@ -30,12 +30,12 @@ jobs:
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
           permission-contents: write
       - name: Checkout
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           ref: ${{ github.ref_name }}
           token: ${{ steps.app-token.outputs.token }}
       - name: Generate README
-        uses: upptime/uptime-monitor@6d6c65660f4a6720cffa5aafa88e078441dea44c # v1.43.1
+        uses: upptime/uptime-monitor@7d817ff35938c9c706acb7c86ed8d52e22cae2b7 # v1.43.10
         with:
           command: "readme"
         env:
