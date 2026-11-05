@@ -28,7 +28,7 @@ jobs:
     steps:
       - name: Mint a token for the Upptime GitHub App
         id: app-token
-        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
         with:
           client-id: ${{ vars.APP_CLIENT_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
@@ -39,7 +39,7 @@ jobs:
           ref: ${{ github.ref_name }}
           token: ${{ steps.app-token.outputs.token }}
       - name: Generate site
-        uses: upptime/uptime-monitor@8be193bbcb957a3a917d2bb16a0c96959778a889 # v1.44.1
+        uses: upptime/uptime-monitor@74f0683383384927e064d76a5f21f340d6af36fc # v1.46.5
         with:
           command: "site"
         env:
